@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
+use App\Models\Evaluation;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class EvaluationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Course::with('category')->get();
+        //
     }
 
     /**
@@ -29,27 +29,24 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
-            'description'=>'required',
-            'category_id'=>'required|exists:categories,id'
+            'enrollment_id'=>'required|exists:enrollments,id',
+            'title'=>'required|string',
+            'grade'=>'nullable|numeric|min:0|max:10',
+            'date'=>'required|date',
         ]);
-        return Course::create([
-            'title'=> $request->title,
-            'description'=> $request->description,
-            'category_id'=> $request->category_id,
-            'created_by'=> auth()->id(),
-        ]);
+        return Evaluation::create($request->all());
     }
-
-    public function showByCategory($id)
+    public function myEvaluations() //Confirmando la evaluacion con las inscripciones.
     {
-        return Course::where('category_id', $id)->get();
+        return Evaluation::whereHas('enrollment', function ($query) {
+            $query->where('user_id', auth()->id());
+        })->with('enrollment.course')->get();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Course $course)
+    public function show(Evaluation $evaluation)
     {
         //
     }
@@ -57,7 +54,7 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Course $course)
+    public function edit(Evaluation $evaluation)
     {
         //
     }
@@ -65,7 +62,7 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, Evaluation $evaluation)
     {
         //
     }
@@ -73,7 +70,7 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Course $course)
+    public function destroy(Evaluation $evaluation)
     {
         //
     }
