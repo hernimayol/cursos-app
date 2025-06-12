@@ -43,6 +43,10 @@ class EvaluationController extends Controller
         })->with('enrollment.course')->get();
     }
 
+    public function evaluationsByUser($id) {
+        return Evaluation::whereHas('enrollment', fn($q) => $q -> where('user_id', $id))->get();
+    } //Funcion para que el admin pueda ver las evaluaciones de cualquier usuario
+
     /**
      * Display the specified resource.
      */

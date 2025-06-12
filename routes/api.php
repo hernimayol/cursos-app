@@ -20,6 +20,10 @@ Route::middleware('auth:sanctum')->group(function() {
 
     //Administrador: Categorías y Cursos:
     Route::middleware('is_admin')->group(function() {
+        Route::middleware(['auth:sanctum', 'is_admin'])->post('/register', [AuthController::class, 'register']); //Linea para que solo el administrador pueda registrar los usuarios
+        Route::get('/evaluations/user/{id}', [EvaluationController::class, 'evaluationsByUser']); //Esta linea permite a un admin ver las evaluaciones de otro usuario (por ID)
+
+
         Route::apiResource('categories', CategoryController::class)->except('show');
         Route::post('/courses', [CourseController::class, 'store']);
         Route::post('/evaluations', [EvaluationController::class, 'store']);
