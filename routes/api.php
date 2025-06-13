@@ -17,6 +17,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function() {
     Route::post('/logout', [AuthController::class, 'logout']);
+//
 
     //Administrador: Categorías y Cursos:
     Route::middleware('is_admin')->group(function() {
@@ -28,11 +29,13 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::post('/courses', [CourseController::class, 'store']);
         Route::post('/evaluations', [EvaluationController::class, 'store']);
     });
+//
 
     //Publico en general y estudiantes:
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('/courses', [CourseController::class, 'index']);
-    Route::get('/courses/category/{id}', [CourseController::class, 'shoByCategory']);
+    Route::get('/courses/category/{id}', [CourseController::class, 'showByCategory']);
+//
 
     //Estudiante: Inscripción y evaluación propia:
     Route::post('/courses/{id}/enroll', [EnrollmentController::class, 'enroll']);
