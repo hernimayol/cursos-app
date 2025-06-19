@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -47,7 +48,17 @@ class User extends Authenticatable
         ];
     }
 
-    protected function enrollments(){   //para las inscripciones
-        return $this->HasMany(Enrollment::class);
+  //  protected function enrollments(){   //para las inscripciones
+   //     return $this->HasMany(Enrollment::class);
+   // }
+    public function enrollments()
+    {
+    return $this->hasMany(\App\Models\Enrollment::class);
     }
+
+    public function courses()
+    {
+        return $this->belongsToMany(\App\Models\Course::class, 'enrollments');
+    }
+
 }
