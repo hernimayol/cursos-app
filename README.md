@@ -31,11 +31,13 @@ Este proyecto es una API RESTful desarrollada en Laravel 12, que permite la gest
 
 Todas las rutas protegidas con middleware donde corresponde, los modelos tienen campos protegidos por '$fillable', y se provee una colección Postman para pruebas de la API.
 
-## Nombre de la carpeta para acceder al json para Postman: "POSTMAN"
+## Nombre de la carpeta para acceder al json para Postman:
+
+"POSTMAN"
 
 Por: José Hernán Mayol Toledo.
 
 ##                  CONTACTO
-Linkedin: https://www.linkedin.com/in/hernan-mayol
-Gmail: jhernanmt@gmail.com
-Teléfono: +54 3794080124
+- Linkedin: https://www.linkedin.com/in/hernan-mayol
+- Gmail: jhernanmt@gmail.com
+- Teléfono: +54 3794080124
