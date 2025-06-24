@@ -32,4 +32,4 @@ Este proyecto es una API RESTful desarrollada en Laravel 12, que permite la gest
 Todas las rutas protegidas con middleware donde corresponde, los modelos tienen campos protegidos por '$fillable', y se provee una colección Postman para pruebas de la API.
 
 Por: José Hernán Mayol Toledo
-Linkedin: <a href="https://www.linkedin.com/in/hernan-mayol"</a>
+Linkedin: <p <a href="https://www.linkedin.com/in/hernan-mayol"</a> </p>
